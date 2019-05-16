@@ -34,7 +34,7 @@
       build:
 
         context: .
-        dockerfile: /home/mateus/Documents/CarWashApp/flask/Dockerfile
+        dockerfile: Dockerfile
 
       depends_on:
         - postgres
