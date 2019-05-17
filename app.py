@@ -32,15 +32,12 @@ manager.add_command('db', MigrateCommand)
 
 # ====================================inicio do modelo==============================#
 
-class BaseModel(db.Model):
-
-
-# """Base data model for all objects"""
+class BaseModel(db.Model):  # classe não intanciada, ela apenas herda, usada como modelobase
     __abstract__ = True
 
 
-class GPS(BaseModel):
-    """Model for the stations table"""
+class GPS(BaseModel):  # herda de BaseModel
+    
     __tablename__ = 'gps'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -48,7 +45,7 @@ class GPS(BaseModel):
     lng = db.Column(db.Float)
 
 
-class cadastro(BaseModel):
+class Cadastro(BaseModel):
     __tablename__ = 'cadastro'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -56,8 +53,9 @@ class cadastro(BaseModel):
     email = db.Column(db.String())
     senha = db.Column(db.String())
 
-class cliente(BaseModel):
-    __tablename__= 'cliente'
+
+class Cliente(BaseModel):
+    __tablename__ = 'cliente'
 
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String())
@@ -67,7 +65,8 @@ class cliente(BaseModel):
     codigo = db.Column(db.Float)
     localizacao = db.Column(db.Float)
 
-class servicos(BaseModel):
+
+class Servicos(BaseModel):
     __tablename__ = 'servicos'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -79,8 +78,6 @@ class servicos(BaseModel):
     localizacao = db.Column(db.Float)
 
 
-
-
 # ====================================fim dos modelos===========================#
 
 @app.route("/")
@@ -88,7 +85,7 @@ def hello():
     return "Hello World!"
 
 
-# n se altera
+# nao se altera
 
 if __name__ == '__main__':
     app.run('0.0.0.0', 8000)
