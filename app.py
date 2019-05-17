@@ -68,6 +68,7 @@ class cliente(BaseModel):
     localizacao = db.Column(db.Float)
 
 class servicos(BaseModel):
+    __tablename__ = 'servicos'
 
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String())
