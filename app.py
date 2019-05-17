@@ -17,7 +17,9 @@ POSTGRES = {
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\
 %(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
 
-postgres = CREATE DATABASE Lavajax;
+postgres = CREATE
+DATABASE
+Lavajax;
 
 db.init_app(app)
 manager = Manager(app)
@@ -26,6 +28,10 @@ migrate = Migrate(app, db)
 manager.add_command('db', MigrateCommand)
 
 
+# =====================================fim do banco=================================#
+
+# ====================================inicio do modelo==============================#
+
 class BaseModel(db):
 
 
@@ -33,9 +39,19 @@ class BaseModel(db):
 __abstract__ = True
 
 
-class Users(BaseModel):
+class Users(db.model):
     # """model for one of your table"""
     __tablename__ = 'usuario'
+
+    def __init__(self, *args):
+        super(__init__, self).__init__(*args)
+
+    def __repr__(self):
+        """Define a base way to print models"""
+        return '%s(%s)' % (self.__class__.__name__, {
+            column: value
+            for column, value in self._to_dict().items()
+        })
 
     # define your model
 
@@ -48,13 +64,24 @@ class GPS(BaseModel, db.Model):
     lat = db.Column(db.Float)
     lng = db.Column(db.Float)
 
+class usuario(BaseModel, db.model):
+    __tablenamo__= 'usuarios'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String())
+    emial = db.Column(db.String())
+    senha = db.Column(db.String())
+    
+
+# ====================================fim dos modelos===========================#
 
 @app.route("/")
 def hello():
     return "Hello World!"
 
 
-# não se altera
+# n se altera
 
 if __name__ == '__main__':
     app.run('0.0.0.0', 8000)
+
