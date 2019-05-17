@@ -32,7 +32,7 @@ manager.add_command('db', MigrateCommand)
 
 # ====================================inicio do modelo==============================#
 
-class BaseModel(db):
+class BaseModel(db.Model):
 
 
 # """Base data model for all objects"""
@@ -66,12 +66,12 @@ class GPS(BaseModel, db.Model):
 
 class usuario(BaseModel, db.model):
     __tablenamo__= 'usuarios'
-    
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String())
     emial = db.Column(db.String())
     senha = db.Column(db.String())
-    
+
 
 # ====================================fim dos modelos===========================#
 
@@ -84,4 +84,3 @@ def hello():
 
 if __name__ == '__main__':
     app.run('0.0.0.0', 8000)
-
