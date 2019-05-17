@@ -36,27 +36,10 @@ class BaseModel(db.Model):
 
 
 # """Base data model for all objects"""
-__abstract__ = True
+    __abstract__ = True
 
 
-class Users(db.model):
-    # """model for one of your table"""
-    __tablename__ = 'usuario'
-
-    def __init__(self, *args):
-        super(__init__, self).__init__(*args)
-
-    def __repr__(self):
-        """Define a base way to print models"""
-        return '%s(%s)' % (self.__class__.__name__, {
-            column: value
-            for column, value in self._to_dict().items()
-        })
-
-    # define your model
-
-
-class GPS(BaseModel, db.Model):
+class GPS(BaseModel):
     """Model for the stations table"""
     __tablename__ = 'gps'
 
@@ -64,8 +47,9 @@ class GPS(BaseModel, db.Model):
     lat = db.Column(db.Float)
     lng = db.Column(db.Float)
 
-class usuario(BaseModel, db.model):
-    __tablenamo__= 'usuarios'
+
+class usuario(BaseModel):
+    __tablenamo__ = 'usuarios'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String())
