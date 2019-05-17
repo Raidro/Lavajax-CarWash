@@ -17,9 +17,7 @@ POSTGRES = {
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\
 %(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
 
-postgres = CREATE
-DATABASE
-Lavajax;
+postgres = CREATE DATABASE Lavajax;
 
 db.init_app(app)
 manager = Manager(app)
