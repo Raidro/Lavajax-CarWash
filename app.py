@@ -48,13 +48,36 @@ class GPS(BaseModel):
     lng = db.Column(db.Float)
 
 
-class usuario(BaseModel):
-    __tablenamo__ = 'usuarios'
+class cadastro(BaseModel):
+    __tablename__ = 'cadastro'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String())
-    emial = db.Column(db.String())
+    email = db.Column(db.String())
     senha = db.Column(db.String())
+
+class cliente(BaseModel):
+    __tablename__= 'cliente'
+
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String())
+    tipodeservicos = db.Column(db.String())
+    valor = db.Column(db.Float)
+    formadepagamento = db.Column(db.String())
+    codigo = db.Column(db.Float)
+    localizacao = db.Column(db.Float)
+
+class servicos(BaseModel):
+
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String())
+    tipodeservicos = db.Column(db.String())
+    valor = db.Column(db.Float)
+    formadepagamento = db.Column(db.String())
+    codigo = db.Column(db.Float)
+    localizacao = db.Column(db.Float)
+
+
 
 
 # ====================================fim dos modelos===========================#
