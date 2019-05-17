@@ -1,5 +1,11 @@
 from flask import Flask
+
 app = Flask(__name__)
+
+create_engine('postgresql://postgres:postgres@localhost/postgres')
+
+
+
 
 
 @app.route("/")
