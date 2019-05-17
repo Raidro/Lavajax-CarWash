@@ -17,7 +17,7 @@ POSTGRES = {
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\
 %(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
 
-postgres= CREATE DATABASE Lavajax;
+postgres = CREATE DATABASE Lavajax;
 
 db.init_app(app)
 manager = Manager(app)
@@ -26,15 +26,12 @@ migrate = Migrate(app, db)
 manager.add_command('db', MigrateCommand)
 
 
-class BaseModel(db.Model):
+class BaseModel(db):
 
 
 # """Base data model for all objects"""
 __abstract__ = True
 
-
-# define here __repr__ and json methods or any common method
-# that you need for all your models
 
 class YourModel(BaseModel):
     # """model for one of your table"""
