@@ -4,8 +4,11 @@ from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 
 app = Flask(__name__)
-
-db = SQLAlchemy()
+db = SQLAlchemy(app)
+db.init_app(app)
+manager = Manager(app)
+migrate = Migrate(app, db)
+manager.add_command('db', MigrateCommand)
 
 POSTGRES = {
     'user': 'postgres',
@@ -21,23 +24,18 @@ postgres = CREATE
 DATABASE
 Lavajax;
 
-db.init_app(app)
-manager = Manager(app)
-migrate = Migrate(app, db)
-
-manager.add_command('db', MigrateCommand)
-
 
 # =====================================fim do banco=================================#
 
 # ====================================inicio do modelo==============================#
 
-class BaseModel(db.Model):  # classe não intanciada, ela apenas herda, usada como modelobase
+
+class BaseModel(db.Model):  # classe nao instanciada, ela apenas herda, usada como modelobase
     __abstract__ = True
 
 
 class GPS(BaseModel):  # herda de BaseModel
-    
+
     __tablename__ = 'gps'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -82,7 +80,7 @@ class Servicos(BaseModel):
 
 @app.route("/")
 def hello():
-    return "Hello World!"
+    return "Conectado!"
 
 
 # nao se altera
