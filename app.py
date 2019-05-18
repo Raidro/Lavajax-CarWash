@@ -14,13 +14,14 @@ POSTGRES = {
     'user': 'postgres',
     'pw': 'postgres',
     'db': 'postgres',
-    'host': 'localhost',
+    'host': 'postgres',
     'port': '5432',
 }
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\
 %(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
 
-#postgres = CREATE DATABASE Lavajax
+
+# postgres = CREATE DATABASE Lavajax
 
 
 # =====================================fim do banco=================================#
